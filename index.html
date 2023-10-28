@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Autoração - Lista1.2</title>
+  <link href="styleIndex.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <h1>Lista de exercícios 1 - parte 2</h1>
+    <p>
+      Autoração Multimídia II - 2023.2<br>
+      José Roberto Santos - 539023
+    </p>
+  </header>
+<!-- ############################questão 1############################# -->
+  <section class="quest">
+    <h3>Questão 1</h3>
+    <p>Uma pseudo-classe, em CSS, é uma palavra-chave adicionada a um seletor que especifica um estado especial para
+      seleção de um ou mais elementos. Um exemplo clássico é a pseudo-classe “:hover”, associada a um link ou botão e
+      que ativaria as regras sobre esses elementos quando o ponteiro do mouse fosse colocado sobre um destes elementos.
+      Quais das opções abaixo usam classes que permitem trabalhar selecionando elementos para aplicar regras baseados em
+      Foco do Elemento, Ativação do Elemento pelo usuário ou seleção de Elemento Requerido? (1 pto)</p>
+    <p>
+      <strong> A) input:required { border-color: #800000; border-width: 3px;}</strong>
+    </p>
+    <div class="ans">
+      <p><em>Resp: seleção de elemento requerido</em></p>
+      <p> <strong> input:required </strong> seleciona elementos input que são marcados como "required" (obrigatórios) em um formulário.</p>
+      <p> No exemplo abaixo, o campo nome foi configurado como required (obrigatório) por isso a regra de estilo foi aplicada. Já o campo idade não possui esse atributo, e portanto o estilo não é alterado. </p>
+      <label>Nome: <input type="text" id="nome" required> </label>
+      <p></p>
+      <label>Idade: <input type="text" id="idade"></label>
+    
+    </div>
+
+    <p>
+      <strong> B) .blue-input:focus {background: yellow; color: blue;} </strong>
+     
+    </p>
+     <div class="ans">
+       <p><em>Resp: foco de elemento</em></p>
+    <p> <strong>.blue-input:focus </strong> define as regras de estilo da classe blue-input quando o campo está em foco
+      (quando o usuário clica nele). No exemplo abaixo, o campo endereço foi configurado desta forma.</p>
+    <label>Endereço: <input type="text" class="blue-input"></label>
+     </div>
+    
+    <p><strong> C) a:active { color: red;}</strong></p>
+    <div class="ans">
+    <p><em>Resp: ativação de elemento</em></p>
+    <p> <strong>a:active </strong> seleciona links (a) quando estão ativos, ou seja, quando o usuário clica neles. O
+      link abaixo fica vermelho quando clicado</p>
+    <a href="index.html">voltar ... </a>
+
+      </div>
+    <p><strong> D) input:checked + label { color: red;}</strong> </p>
+    <div class="ans">
+    <p><em>Resp: nenhuma das alternativas</em></p>
+      </div>
+    
+    <div class="resp">
+      <p>Arquivos de resposta:</p>
+      <p><a href="https://replit.com/@laibra/autoracaolista1p2#styleIndex.css">CSS</a></p>
+    </div>
+  </section>
+
+  <!-- ############################questão 2############################# -->
+  
+  <section class="quest">
+    <h3>Questão 2</h3>
+    <p>Faça uma função chamada isPrime(num), que recebe um número (Number) e retorna true, caso seja primo, ou false,
+      caso contrário.</p>
+    <section class="questPrime">
+      <label> Testar número <input id="nPrimo"> </label>
+      <input type="button" id="butPrimo" value="é primo?">
+      <p></p>
+      Resultado: <output id="resultP"> </output>
+    </section>
+
+    <div class="resp">
+      <p>Arquivos de resposta:</p>
+      <p><a href="https://replit.com/@laibra/autoracaolista1parte2#script.js">js</a></p>
+    </div>
+  </section>
+
+  <!-- ############################questão 3############################# -->
+  <section class="quest">
+    <h3>Questão 3</h3>
+    <p>Em CSS, um Seletor define a quais elementos um conjunto de regras (rules) se aplica. Ele pode ser o descritor de
+      uma tag, o identificador (Id) de um elemento ou a classe (class) a qual está associada um elemento. O CSS permite
+      a combinação de seletores a fim de definir regras que se apliquem mais precisamente a um conjunto de elementos
+      desejados. Um “Combinador” (Combinator) é um elemento que permite esse processo. Quais opções abaixo possuem
+      Combinadores do tipo Child Combinator, General Sibling Combinator ou Adjacent Sibling Combinator? (Para pesquisar)
+      (1 pto)
+    </p>
+    <p><strong>A) div ~ p { … }</strong></p>
+    <div class="ans"><em>Este é um exemplo do General Sibling Combinator (~)</em></div>
+    <p><strong>B) p || ul &lt; p { … }</strong> </p>
+    <div class="ans"><em>Esta sintaxe não é válida</em></div>
+    <p><strong>C) div + ul > li span { … }</strong> </p>
+    <div class="ans"><em>Este é um exemplo do Adjacent Sibling Combinator (+)</em></div>
+    <p><strong>D) div > p + span { … }</strong></p>
+    <div class="ans"><em>Este é um exemplo do Child Combinator (>)</em></div>
+    <div class="ans">
+      <hr>
+      <p>Child Combinator (>): Este combinador seleciona elementos que são filhos diretos do elemento à esquerda.</p>
+      <p>General Sibling Combinator (~): Este combinador seleciona elementos que são irmãos no mesmo nível do elemento à esquerda. Não precisa ser necessariamente um irmão direto, mas precisa estar no mesmo nível da hierarquia.</p>
+      <p>Adjacent Sibling Combinator (+): Este combinador seleciona elementos que são irmãos no mesmo nível do elemento à esquerda e que estão imediatamente após o elemento à esquerda. </p>
+    </div>
+  </section>
+
+  <!-- ############################questão 4############################# -->
+  <section class="quest">
+    <h3>Questão 4</h3>
+    <p>Faça uma função em Javascript, chamada printTxt(str,element), que insere dentro de um elemento DOM, fornecido
+      como parâmetro, um elemento DOM do tipo P. O elemento P, deverá ter como valor a String fornecida no parâmetro
+      str. Através do Javascript, essa função deve adicionar o estilo Negrito e o tamanho de fonte 14px, aos parágrafos
+      criados. Note, a atribuição de estilo não deve ser aplicada às tags P através de atributo explícito style, mas
+      através da propriedade style() dos objetos DOM. A função criada deve retornar o elemento passado como parâmetro,
+      preenchido com o elemento P inserido. Caso não seja passado qualquer um dos parâmetros solicitados, a função deve
+      retornar "null".</p>
+    <div class="ans">
+    <p>Resposta: </p>
+    <div id="quest4"></div>
+    </div>
+    
+    <div class="resp">
+      <p>Arquivos de Resposta: </p>
+      <p><a href="https://replit.com/@laibra/autoracaolista1parte2#script.js">js</a></p>
+    </div>
+  </section>
+
+  <!-- ############################questão 5############################# -->
+  <section class="quest">
+    <h3>Questão 5</h3>
+    <p>Faça uma função chamada searchKeyword(arr,keywd), que recebe, como parâmetros, um vetor de Strings (arr), além de
+      uma palavra-chave ou trecho de texto (keywd), a fim de realizar uma busca por todos os elementos do vetor que
+      possuírem em sua composição o valor fornecido em keywd. Ele deve retornar as posições do vetor onde foi encontrada
+      a substring (trecho de texto ou palavra-chave) fornecida como parâmetro (1 pto)
+    </p>
+
+    <section class="questPrime">
+      <label> Vetor de strings<input id="arrS"> (os elementos devem ser separados por ,) </label>
+      <p></p>
+      <label> Palavra <input id="kword"> </label>
+      <input type="button" id="butS" value="Busca">
+      <p></p>
+      Posições: <output id="resultS"> </output>
+    </section>
+    
+    <div class="resp">
+      <p>Arquivo de Resposta: </p>
+      <p><a href="https://replit.com/@laibra/autoracaolista1parte2#script.js">js</a></p>
+  </section>
+
+  <!-- ############################questão 6############################# -->
+  <section class="quest">
+    <h3>Questão 6</h3>
+    <p>Qual dos elementos abaixo permite que os dados de um formulário
+      sejam enviados para um dado destino, definido no atributo Action,
+      disparando, automaticamente, os eventos Submit e Click, durante esse
+      processo? (1 pto)</p>
+    <p>
+      <strong> A) <code>&lt;button&gt; Enviar &lt;/button&gt;</code>
+</strong>
+    </p>
+
+    <p>
+      <strong> B) <code>&lt;input type="text" id="Enviar"&gt;</code>
+ </strong>
+
+    </p>
+    <p><strong> C) <code>&lt;input type="reset" value="Enviar"&gt;</code>
+</strong></p>
+    <p><strong> D) <code>&lt;form id="Enviar" action="/cadastrar" method="post"&gt;</code>
+</strong> </p>
+    <div class="ans">
+    <p><em>Resp: Alternativa D. Ela apresenta a tag form para criar um formulário, e configura o atributo action para definir o destino dos dados. Quando o formulário é submetido , o evento Submit é acionado automaticamente junto que o evento Click, que pode estar associado a um botão de submissão.</em></p>
+      </div>
+
+  </section>
+
+  <!-- ############################questão 7############################# -->
+  <section class="quest">
+    <h3>Questão 7</h3>
+    <p>Uma lista de todos os números naturais menores que 10 e que são
+      múltiplos de 3 ou 5, tem como resultado os números 3, 5, 6 e 9. Note que a
+      soma destes quatro números é 23. Faça um programa que encontre a soma
+      de todos os números múltiplos de 3 ou 5, abaixo de 1.000, mostrando o
+      resultado do programa em uma página web. Para executar esse programa, a
+      página web deve conter um botão que ao ser clicado irá executar seu código.
+      Esta página deve, também, conter um pequeno texto que explique o que o
+      programa faz e o algoritmo que você criou. (1 pto)
+    </p>
+
+    <section class="questPrime">
+<p> Este programa, calcula o somatório dos números multiplos de 3 ou 5 menores que 1000.</p>
+      <P>Para isso, ele utiliza a função somatorio com um for loop que percorre todos os numeros de 3 a 999 e testa se eles são divisíveis por 3 ou 5.Quando a condição for verdadeira, o valor de i é adicionado a variável soma </P>
+      <P>Ao final do loop, a função somatorio retorna o valor soma, que é mostrado abaixo.</P>
+      
+      <input type="button" id="butM" value="Calcular Soma">
+      <p></p>
+      Soma: <output id="resultM"> </output>
+    </section>
+
+    <div class="resp">
+      <p>Arquivo de Resposta: </p>
+      <p><a href="https://replit.com/@laibra/autoracaolista1parte2#script.js">js</a></p>
+  </section>
+
+  
+  <script src="script.js"></script>
+</body>
+
+</html>
