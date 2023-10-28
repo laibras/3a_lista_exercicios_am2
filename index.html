@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -18,7 +17,7 @@
     </header>
     <hr>
     <section class="questionSelection">
-        <input type="button" id="qBut1" class="questBut" value="questão 1">
+        <input type="button" role="button" id="qBut1" class="questBut" value="questão 1">
         <input type="button" id="qBut2" class="questBut" value="questão 2">
         <input type="button" id="qBut3" class="questBut" value="questão 3">
         <input type="button" id="qBut4" class="questBut" value="questão 4">
@@ -47,9 +46,11 @@
         <hr>
         <section class="ans">
             <input type="text" id="wordInput" placeholder="Digite palavras separadas por vírgula">
-            <button onclick="sortWords()">Ordenar Crescente</button>
-            <button onclick="sortWords(-1)">Ordenar Decrescente</button>
-            <div id="result"></div>
+            <p></p>
+            <button id="q1b1">Ordenar Crescente</button>
+            <button id="q1b2">Ordenar Decrescente</button>
+            <p></p>
+            <div id="q1Result"></div>
         </section>
 
     </section>
