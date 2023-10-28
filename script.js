@@ -23,7 +23,20 @@ qBut1.addEventListener("click", function () {
         question.style.display = "none";
       });
 
-    if(flag==1)     questions[0].style.display="block";
-    else if(flag==2)   questions[1].style.display="block";
-    else if(flag==3)   questions[2].style.display="block";
+   for(let i=1;i<=10;i++){
+         if(flag==i)     questions[i-1].style.display="block";
+   }
+ }
+
+ //questão 1*********************************************************
+
+ function sortArrayStr(arr,typeSort){
+   if (arr.length>100) return null;
+   //if (typeSort!=1 || typeSort!=-1) 
+   if(typeSort==1){
+
+   }else if(typeSort==-1){
+
+   }else return null;
+
  }
