@@ -11,14 +11,70 @@
 <body>
     <header>
         <h1>Autoração Multimídia I - Lista 3</h1>
-        <h3>Equipe</h3>
+        <h2>Equipe</h2>
         <p>José Roberto</p>
         <p>Rafael</p>
         <p>Matheus</p>
-
     </header>
-    
+    <hr>
+    <section class="questionSelection">
+        <input type="button" id="qBut1" class="questBut" value="questão 1">
+        <input type="button" id="qBut2" class="questBut" value="questão 2">
+        <input type="button" id="qBut3" class="questBut" value="questão 3">
+        <input type="button" id="qBut4" class="questBut" value="questão 4">
+        <input type="button" id="qBut4" class="questBut" value="questão 5">
+        <input type="button" id="qBut4" class="questBut" value="questão 6">
+        <input type="button" id="qBut4" class="questBut" value="questão 7">
 
+    </section>
+
+    <section class="question">
+        <h3>Questão 1</h3>
+        <p>
+        Crie uma função chamada  sortArrayStr(arr,typeSort), 
+        que receba, como parâmetro, um vetor de palavras (arr) 
+        e a forma de ordenação (typeSort). A forma de ordenação 
+        pode ser Crescente (typeSort=1) ou Decrescente (typeSort=-1). 
+        O vetor deve ter no máximo 100 posições, caso contrário, 
+        a função retornará "null". Caso o valor de typeSort seja 
+        diferente de um ou menos um, a função deve também retornar "null". 
+        Caso os parâmetros estejam corretos, a função deve retornar a 
+        um vetor ordenado. (1 ponto)
+        </p>
+    </section>
+
+    <section class="question">
+        <h3>Questão 2</h3>
+        <p>
+            Faça uma função chamada searchItems(arr,key,value), que recebe como
+            parâmetros um Array de Objetos Literais (arr), uma chave (key) e um
+            valor para buscar (value). A função deve procurar em cada objeto
+            armazenado no no vetor, uma key (chave) que contenha um valor
+            (value), fornecido. Nos Objetos Literais armazenados no vetor, deve
+            existir as chaves "nome", "idade" e "data-nascimento". A primeira
+            chave deve receber valores do tipo String; a idade, Number; e a última,
+            Date. Caso a key fornecida como parâmetro não esteja presente nos
+            objetos fornecidos, a função deve retornar o tipo especial "undefined".
+            Caso o valor fornecido no parâmetro value não esteja presente nos
+            objetos, deve ser retornando "null". Se houver objetos com o valor
+            procurado, deve-se retornar um vetor que contenha esses objetos. (1
+            ponto)
+        </p>
+    </section>
+
+    <section class="question">
+        <h3>Questão 3</h3>
+        <p>
+            Faça uma função chamada filterPrimes(arr) que receba um vetor com
+            elementos numéricos (a função deve testar essa condição e retornar
+            valor que possa indicar que o vetor fornecido não é composto somente
+            por números) e que retorna um vetor com o conjunto de valores primos
+            encontrados. Caso não seja encontrado nenhum valor primo, a função
+            deve retornar um valor nulo. (1 ponto)            
+        </p>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 
 </htm>
