@@ -3,7 +3,7 @@
 ## Equipe
 
 - José Roberto
-- Rafael
+- Rafa
 - Ronald
 
 ## Descrição
