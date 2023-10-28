@@ -4,7 +4,7 @@
 
 - José Roberto
 - Rafael
-- Matheus
+- Ronald
 
 ## Descrição
 Segunda Lista de exercícios da disciplina Autoração Multimpidia 2023.1
