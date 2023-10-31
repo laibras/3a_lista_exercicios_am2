@@ -6,27 +6,29 @@
   <meta name="viewport" content="width=device-width">
   <title>Autoração - Lista3</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+
+
 </head>
 <body>
     <header>
-        <h1>Autoração Multimídia I - Lista 3</h1>
-        <h2>Equipe</h2>
+        <h1>Autoração Multimídia II - Lista 3</h1>
+        <h3>Equipe Fusers Ímpar</h3>
         <p>José Roberto</p>
-        <p>Rafael</p>
-        <p>Matheus</p>
+        <p>Rafael Feitosa</p>
+        <p>Matheus Ronald</p>
     </header>
-    <hr>
+    <!-- <hr id="info"> -->
     <section class="questionSelection">
-        <input type="button" role="button" id="qBut1" class="questBut" value="questão 1">
+        <input type="button" id="qBut1" class="questBut" value="questão 1">
         <input type="button" id="qBut2" class="questBut" value="questão 2">
         <input type="button" id="qBut3" class="questBut" value="questão 3">
         <input type="button" id="qBut4" class="questBut" value="questão 4">
-        <input type="button" id="qBut4" class="questBut" value="questão 5">
-        <input type="button" id="qBut4" class="questBut" value="questão 6">
-        <input type="button" id="qBut4" class="questBut" value="questão 7">
-        <input type="button" id="qBut4" class="questBut" value="questão 8">
-        <input type="button" id="qBut4" class="questBut" value="questão 9">
-        <input type="button" id="qBut4" class="questBut" value="questão 10">
+        <input type="button" id="qBut5" class="questBut" value="questão 5">
+        <input type="button" id="qBut6" class="questBut" value="questão 6">
+        <input type="button" id="qBut7" class="questBut" value="questão 7">
+        <input type="button" id="qBut8" class="questBut" value="questão 8">
+        <input type="button" id="qBut9" class="questBut" value="questão 9">
+        <input type="button" id="qBut10" class="questBut" value="questão 10">
 
     </section>
 
@@ -61,7 +63,7 @@
             Faça uma função chamada searchItems(arr,key,value), que recebe como
             parâmetros um Array de Objetos Literais (arr), uma chave (key) e um
             valor para buscar (value). A função deve procurar em cada objeto
-            armazenado no no vetor, uma key (chave) que contenha um valor
+            armazenado no vetor, uma key (chave) que contenha um valor
             (value), fornecido. Nos Objetos Literais armazenados no vetor, deve
             existir as chaves "nome", "idade" e "data-nascimento". A primeira
             chave deve receber valores do tipo String; a idade, Number; e a última,
@@ -72,6 +74,19 @@
             procurado, deve-se retornar um vetor que contenha esses objetos. (1
             ponto)
         </p>
+        <hr>
+        <section class="ans">
+            <label for="keyInput">Chave:</label>
+            <input type="text" id="keyInput" placeholder="nome, idade ou data-nascimento">
+            <br>
+            <label for="valueInput">Valor:</label>
+            <input type="text" id="valueInput" placeholder="Valor">
+            <br>
+            <p></p>
+            <button id="searchButton">Pesquisar</button>
+            <p></p>
+            <div id="q2Result"></div>
+        </section>
     </section>
 
     <section class="question">
@@ -84,8 +99,103 @@
             encontrados. Caso não seja encontrado nenhum valor primo, a função
             deve retornar um valor nulo. (1 ponto)            
         </p>
+        <hr>
+        <section class="ans">
+          
+        </section>
     </section>
 
+    <section class="question">
+        <h3>Questão 4</h3>
+        <p>
+            Faça uma função chamada filterPrimes(arr) que receba um vetor com
+            elementos numéricos (a função deve testar essa condição e retornar
+            valor que possa indicar que o vetor fornecido não é composto somente
+            por números) e que retorna um vetor com o conjunto de valores primos
+            encontrados. Caso não seja encontrado nenhum valor primo, a função
+            deve retornar um valor nulo. (1 ponto)            
+        </p>
+        <hr>
+        <section class="ans">
+          
+        </section>
+    </section>
+    <section class="question">
+        <h3>Questão 5</h3>
+        <p>
+            Faça uma função chamada filterPrimes(arr) que receba um vetor com
+            elementos numéricos (a função deve testar essa condição e retornar
+            valor que possa indicar que o vetor fornecido não é composto somente
+            por números) e que retorna um vetor com o conjunto de valores primos
+            encontrados. Caso não seja encontrado nenhum valor primo, a função
+            deve retornar um valor nulo. (1 ponto)            
+        </p>
+        <hr>
+        <section class="ans">
+          
+        </section>
+    </section>
+
+    <section class="question">
+        <h3>Questão 6</h3>
+        <p>
+            Faça uma função chamada listPots(url), que recebe como parâmetro um
+            URL para uma função remota que retorna todos os comentários de
+            armazenados em um servidor. A função retorna um Array de objetos
+            com os dados fornecidos ou, caso não seja retornado nada, ela retorna
+            o valor especial "null". Depois, faça uma aplicação web que acesse a
+            função remota presente no endereço
+            https://jsonplaceholder.typicode.com/posts e liste e pagine os dados
+            recuperados. Use sua função para acessar os dados retornados pela
+            função remota. Os dados retornados são "comentários de usuários",
+            logo, você deve criar uma interface que permite ao utilizador acessar
+            esses dados de forma compreensível e agradável. (1 ponto)           
+        </p>
+        <hr>
+        <section class="ans">
+          
+            <h4>Comentários de Usuários</h4>
+            <ul id="commentList">
+                <!-- Aqui serão exibidos os comentários da página atual -->
+            </ul>
+            <div id="pagination">
+                <button id="prevPage">Anterior</button>
+                <button id="nextPage">Próxima</button>
+            </div>
+
+        </section>
+    </section>
+
+    <section class="question">
+        <h3>Questão 7</h3>
+        <p>
+            Crie um novo projeto, aproveitando a função listPots(url), descrita no
+            exercício anterior, modifique-a e crie uma função chamada
+            listPotsByUset(url,userid) que retorne somente as mensagens
+            pertencentes a um usuário identificado pelo parâmetro userid.
+            Modifique, também, a interface de exibição das mensagens paginadas a
+            fim de que o utilizador possa filtrar as mensagens exibidas, por usuário
+            que a criou. Como os dados retornados não possuem o nome dos
+            usuários que criaram as mensagens, faça o filtro usar somente o valor
+            do identificador de usuário, que seria selecionado pelo utilizador a gim
+            de fazer a filtragem. Lembre de usar o endereço
+            https://jsonplaceholder.typicode.com/posts para acessar as mensagens.
+            (1 ponto)          
+        </p>
+        <hr>
+        <section class="ans">
+            <h4>Filtrar comentários por Usuários</h4>
+            <select id="userSelector">
+                <option value="1">Usuário 1</option>
+                <option value="2">Usuário 2</option>
+                <!-- Adicione mais opções para outros usuários, se necessário -->
+            </select>
+            
+            <button id="filterByUser">Filtrar por Usuário</button>
+        </section>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
 </body>
 
