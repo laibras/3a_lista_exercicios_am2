@@ -95,3 +95,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
  //questão 2*********************************************************
+
+ function searchItems(arr, key, value) {
+   const result = [];
+
+   if (key !== "nome" && key !== "idade" && key !== "data-nascimento") {
+       return undefined;
+   }
+
+   for (const obj of arr) {
+       if (obj.hasOwnProperty(key)) {
+           if (obj[key] === value) {
+               result.push(obj);
+           }
+       } else {
+           return undefined;
+       }
+   }
+
+   if (result.length === 0) {
+       return null;
+   }
+
+   return result;
+}
+//exemplo de ojeto com os dados
+const objetos = [
+   { nome: "Ana", idade: 25, "data-nascimento": new Date("1998-01-15") },
+   { nome: "Beto", idade: 30, "data-nascimento": new Date("1993-05-20") },
+   { nome: "Carlos", idade: 25, "data-nascimento": new Date("1998-01-15") },
+];
+
+const searchButton = document.getElementById("searchButton");
+const q2Result = document.getElementById("q2Result");
+
+searchButton.addEventListener("click", function () {
+   const key = document.getElementById("keyInput").value;
+   const value = document.getElementById("valueInput").value;
+
+   const result = searchItems(objetos, key, value);
+
+   if (result === undefined) {
+       q2Result.textContent = "Chave inválida ou inexistente nos objetos.";
+   } else if (result === null) {
+      q2Result.textContent = "Nenhum objeto corresponde à pesquisa.";
+   } else {
+      q2Result.textContent = JSON.stringify(result);
+   }
+});

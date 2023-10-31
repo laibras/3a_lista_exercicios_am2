@@ -16,7 +16,9 @@ body{
  
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-gap: 25px;
+        grid-gap: auto;
+        width: 800px;
+        height: 150px;
 
 }
 
@@ -51,10 +53,13 @@ body{
   font-size: 18px;
   transition: box-shadow 0.2s, transform 0.2s, color 0.2s; /* Adiciona uma transição suave para a mudança de cor de fundo, sombra e texto */
 
+  width:120px;
 }
 
 .questBut:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  border:solid 1px goldenrod;
+  background-color: #EAEAEA;
 }
 
 .questBut:hover {
@@ -70,10 +75,11 @@ body{
 }
 
 .questBut:active {
-  box-shadow: #D6D6E7 0 3px 7px inset;
+  box-shadow: #EAEAEA 0 3px 7px inset;
   transform: translateY(2px);
+  border:solid 1px goldenrod;
   
 }
 #wordInput{
-    width: 500px;
+    width: 100%;
 }

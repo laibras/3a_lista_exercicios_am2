@@ -17,16 +17,16 @@
     </header>
     <hr>
     <section class="questionSelection">
-        <input type="button" role="button" id="qBut1" class="questBut" value="questão 1">
+        <input type="button" id="qBut1" class="questBut" value="questão 1">
         <input type="button" id="qBut2" class="questBut" value="questão 2">
         <input type="button" id="qBut3" class="questBut" value="questão 3">
         <input type="button" id="qBut4" class="questBut" value="questão 4">
-        <input type="button" id="qBut4" class="questBut" value="questão 5">
-        <input type="button" id="qBut4" class="questBut" value="questão 6">
-        <input type="button" id="qBut4" class="questBut" value="questão 7">
-        <input type="button" id="qBut4" class="questBut" value="questão 8">
-        <input type="button" id="qBut4" class="questBut" value="questão 9">
-        <input type="button" id="qBut4" class="questBut" value="questão 10">
+        <input type="button" id="qBut5" class="questBut" value="questão 5">
+        <input type="button" id="qBut6" class="questBut" value="questão 6">
+        <input type="button" id="qBut7" class="questBut" value="questão 7">
+        <input type="button" id="qBut8" class="questBut" value="questão 8">
+        <input type="button" id="qBut9" class="questBut" value="questão 9">
+        <input type="button" id="qBut10" class="questBut" value="questão 10">
 
     </section>
 
@@ -61,7 +61,7 @@
             Faça uma função chamada searchItems(arr,key,value), que recebe como
             parâmetros um Array de Objetos Literais (arr), uma chave (key) e um
             valor para buscar (value). A função deve procurar em cada objeto
-            armazenado no no vetor, uma key (chave) que contenha um valor
+            armazenado no vetor, uma key (chave) que contenha um valor
             (value), fornecido. Nos Objetos Literais armazenados no vetor, deve
             existir as chaves "nome", "idade" e "data-nascimento". A primeira
             chave deve receber valores do tipo String; a idade, Number; e a última,
@@ -72,6 +72,19 @@
             procurado, deve-se retornar um vetor que contenha esses objetos. (1
             ponto)
         </p>
+        <hr>
+        <section class="ans">
+            <label for="keyInput">Chave:</label>
+            <input type="text" id="keyInput" placeholder="nome, idade ou data-nascimento">
+            <br>
+            <label for="valueInput">Valor:</label>
+            <input type="text" id="valueInput" placeholder="Valor">
+            <br>
+            <p></p>
+            <button id="searchButton">Pesquisar</button>
+            <p></p>
+            <div id="q2Result"></div>
+        </section>
     </section>
 
     <section class="question">
