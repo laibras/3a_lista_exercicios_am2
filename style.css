@@ -96,5 +96,22 @@ header p,h3{
   
 }
 #wordInput{
-    width: 500px;
+    width: 100%;
+}
+
+#commentList {
+  list-style-type: none; /* Remove os marcadores de lista */
+  padding: 0; /* Remove o preenchimento padrão da lista */
+}
+#commentList li {
+  border: 1px solid goldenrod;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #f8f8f8;
+
+  /* Borda arredondada */
+  border-radius: 10px; /* Altere o valor conforme necessário */
+
+  /* Sombra suave para dar profundidade */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Adapte os valores para a sombra desejada */
 }
