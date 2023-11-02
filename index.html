@@ -7,7 +7,7 @@
   <title>Autoração - Lista3</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
     <header>
@@ -18,17 +18,19 @@
         <p>Matheus Ronald</p>
     </header>
     <!-- <hr id="info"> -->
+    <div id="sketch-container"></div>
+
     <section class="questionSelection">
-        <input type="button" id="qBut1" class="questBut" value="questão 1">
-        <input type="button" id="qBut2" class="questBut" value="questão 2">
-        <input type="button" id="qBut3" class="questBut" value="questão 3">
-        <input type="button" id="qBut4" class="questBut" value="questão 4">
-        <input type="button" id="qBut5" class="questBut" value="questão 5">
-        <input type="button" id="qBut6" class="questBut" value="questão 6">
-        <input type="button" id="qBut7" class="questBut" value="questão 7">
-        <input type="button" id="qBut8" class="questBut" value="questão 8">
-        <input type="button" id="qBut9" class="questBut" value="questão 9">
-        <input type="button" id="qBut10" class="questBut" value="questão 10">
+        <input type="button" id="qBut1" class="questBut" value="Questão 1">
+        <input type="button" id="qBut2" class="questBut" value="Questão 2">
+        <input type="button" id="qBut3" class="questBut" value="Questão 3">
+        <input type="button" id="qBut4" class="questBut" value="Questão 4">
+        <input type="button" id="qBut5" class="questBut" value="Questão 5">
+        <input type="button" id="qBut6" class="questBut" value="Questão 6">
+        <input type="button" id="qBut7" class="questBut" value="Questão 7">
+        <input type="button" id="qBut8" class="questBut" value="Questão 8">
+        <input type="button" id="qBut9" class="questBut" value="Questão 9">
+        <input type="button" id="qBut10" class="questBut" value="Questão 10">
 
     </section>
 
@@ -155,13 +157,9 @@
         <section class="ans">
           
             <h4>Comentários de Usuários</h4>
-            <ul id="commentList">
-                <!-- Aqui serão exibidos os comentários da página atual -->
-            </ul>
-            <div id="pagination">
-                <button id="prevPage">Anterior</button>
-                <button id="nextPage">Próxima</button>
-            </div>
+            <div id="comments"></div>
+            <button id="prevPage">Página Anterior</button>
+            <button id="nextPage">Próxima Página</button>
 
         </section>
     </section>
@@ -184,16 +182,22 @@
         </p>
         <hr>
         <section class="ans">
-            <h4>Filtrar comentários por Usuários</h4>
-            <select id="userSelector">
-                <option value="1">Usuário 1</option>
-                <option value="2">Usuário 2</option>
-                <!-- Adicione mais opções para outros usuários, se necessário -->
-            </select>
-            
-            <button id="filterByUser">Filtrar por Usuário</button>
+            <h4>Listar Mensagens por Usuário</h4>
+            <label for="userId">ID do Usuário:</label>
+            <input type="number" id="userId" placeholder="Digite o ID do usuário">
+            <button onclick="listPostsByUser()">Listar Mensagens</button>
+
+            <ul id="posts"></ul>
         </section>
     </section>
+        <section class="question">
+            <h3> Questão 8</h3>
+            <hr>
+            <section class="ans">
+           
+            </section>
+        </section>
+   
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>

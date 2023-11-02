@@ -1,4 +1,7 @@
 
+
+  
+//seleção das questões**********************************************************
 let qBut1=document.getElementById("qBut1");
 let qBut2=document.getElementById("qBut2");
 let qBut3=document.getElementById("qBut3");
@@ -133,155 +136,113 @@ searchButton.addEventListener("click", function () {
 
 
 //questão 6************************************************************************
-function listPosts(url) {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na solicitação de dados.');
-            }
-            return response.json();
+
+document.addEventListener("DOMContentLoaded", function() {
+  const commentsContainer = document.getElementById("comments");
+  const prevPageButton = document.getElementById("prevPage");
+  const nextPageButton = document.getElementById("nextPage");
+
+  let currentPage = 1;
+  const itemsPerPage = 10;
+
+  async function listPosts(url) {
+      try {
+          const response = await fetch(url);
+          const data = await response.json();
+          return data;
+      } catch (error) {
+          console.error("Erro ao buscar os comentários:", error);
+          return null;
+      }
+  }
+
+
+let totalComments = 0;
+
+async function getTotalComments() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data = await response.json();
+        totalComments = data.length;
+    } catch (error) {
+        console.error("Erro ao buscar o total de comentários:", error);
+        totalComments = 0;
+    }
+}
+
+  async function displayComments(page) {
+      const url = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${itemsPerPage}`;
+      const comments = await listPosts(url);
+
+      if (comments === null) {
+          commentsContainer.innerHTML = "Não foi possível buscar os comentários.";
+          return;
+      }
+
+      commentsContainer.innerHTML = "";
+
+      comments.forEach(comment => {
+          const commentDiv = document.createElement("div");
+          commentDiv.classList.add("comment");
+          commentDiv.innerHTML = `
+              <h4>${comment.title}</h4>
+              <p>${comment.body}</p>
+               <p>ID do Usuário: ${comment.userId}</p>
+          `;
+          commentsContainer.appendChild(commentDiv);
+      });
+
+    if (currentPage >= Math.ceil(totalComments / itemsPerPage)) {
+        nextPageButton.disabled = true; // Desabilita o botão de próxima página
+    } else {
+        nextPageButton.disabled = false; // Habilita o botão de próxima página
+    }
+    
+  }
+getTotalComments().then(() => {
+    displayComments(currentPage);
+});
+
+  prevPageButton.addEventListener("click", () => {
+      if (currentPage > 1) {
+          currentPage--;
+          displayComments(currentPage);
+      }
+  });
+
+  nextPageButton.addEventListener("click", () => {
+      currentPage++;
+      displayComments(currentPage);
+  });
+
+  displayComments(currentPage);
+});
+
+
+
+
+//questão 7
+function listPostsByUser() {
+    const userId = document.getElementById("userId").value;
+    const url = `https://jsonplaceholder.typicode.com/posts?userId=${userId}`;
+    
+    // Limpar a lista de posts
+    document.getElementById("posts").innerHTML = "";
+
+    fetch(url)
+        .then(response => response.json())
+        .then(posts => {
+            posts.forEach(post => {
+                // Criar um elemento de comentário para cada post
+                const comment = document.createElement("div");
+                comment.className = "comment";
+                comment.innerHTML = `<h4>${post.title}</h4><p>${post.body}</p>`;
+                document.getElementById("posts").appendChild(comment);
+            });
         })
         .catch(error => {
-            console.error(error);
-            return null;
+            console.error("Erro ao buscar os posts:", error);
         });
 }
-const commentList = document.getElementById('commentList');
-const prevPageButton = document.getElementById('prevPage');
-const nextPageButton = document.getElementById('nextPage');
-document.addEventListener('DOMContentLoaded', function () {
-    // Inicializa a busca dos comentários ao carregar a página
-    fetchComments();
-});
 
-let currentPage = 1; // Página atual
-const itemsPerPage = 10; // Itens por página
-let comments = []; // Armazenar os comentários
-
-function displayPage(page) {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const commentsToDisplay = comments.slice(startIndex, endIndex);
-
-    commentList.innerHTML = ''; // Limpa a lista de comentários
-
-    commentsToDisplay.forEach(comment => {
-        const listItem = document.createElement('li');
-        listItem.textContent = comment.body;
-        commentList.appendChild(listItem);
-    });
-}
-
-function fetchComments() {
-    const url = 'https://jsonplaceholder.typicode.com/comments';
-
-    $.get(url, function (data) {
-        comments = data;
-        displayPage(currentPage);
-    }).fail(function () {
-        console.log('Erro ao buscar os comentários.');
-    });
-}
-
-prevPageButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        displayPage(currentPage);
-    }
-});
-
-nextPageButton.addEventListener('click', () => {
-    const totalPages = Math.ceil(comments.length / itemsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        displayPage(currentPage);
-    }
-});
-
-
-
-//questão 7 *************************************************************************
-
-function listPostsByUser(url, userId) {
-    $.get(url, function (data) {
-        const filteredPosts = data.filter(post => post.userId === userId);
-        displayPage(currentPage, filteredPosts);
-    }).fail(function () {
-        console.log('Erro ao buscar as mensagens.');
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    const userSelector = document.getElementById('userSelector');
-    const filterButton = document.getElementById('filterByUser');
-
-    filterButton.addEventListener('click', function () {
-        const selectedUserId = userSelector.value;
-        listPostsByUser('https://jsonplaceholder.typicode.com/posts', selectedUserId);
-    });
-});
-
-
-
-
-
-
-
-
-
-
-//  qBut1.addEventListener("click", function () {
-//     flag=1;
-//     showQuest();
-//  });
-//  qBut2.addEventListener("click", function () {
-//     flag=2;
-//     showQuest();
-//  });
-//  qBut3.addEventListener("click", function () {
-//     flag=3;
-//     showQuest();
-//  });
-//  qBut4.addEventListener("click", function () {
-//     flag=4;
-//     showQuest();
-//  });
-//  qBut5.addEventListener("click", function () {
-//     flag=5;
-//     showQuest();
-//  });
-//  qBut6.addEventListener("click", function () {
-//     flag=6;
-//     showQuest();
-//  });
-//  qBut7.addEventListener("click", function () {
-//     flag=7;
-//     showQuest();
-//  });
-//  qBut8.addEventListener("click", function () {
-//     flag=8;
-//     showQuest();
-//  });
-//  qBut9.addEventListener("click", function () {
-//     flag=9;
-//     showQuest();
-//  });
-
-//  let q1b1=document.getElementById("q1b1");
-//  let q1b2=document.getElementById("q1b2");
-//  let wordInput=document.getElementById("wordInput")
-//  q1b1.addEventListener("click", function () {
- 
-   
-// });
-
-//  function sortArrayStr(arr,typeSort){
-//    if (arr.length>100) return null;
-//    //if (typeSort!=1 || typeSort!=-1) 
-//    if(typeSort==1){
-
-//    }else if(typeSort==-1){
-
-//    }else return null;
-
-//  }
+//8

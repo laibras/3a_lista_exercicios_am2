@@ -1,0 +1,142 @@
+
+
+<h4>Filtrar comentários por Usuários</h4>
+<select id="userSelector">
+    <option value="1">Usuário 1</option>
+    <option value="2">Usuário 2</option>
+    <!-- Adicione mais opções para outros usuários, se necessário -->
+</select>
+
+<button id="filterByUser">Filtrar por Usuário</button>
+
+
+
+
+<script>
+function listPostsByUser(url, userId) {
+    $.get(url, function (data) {
+        const filteredPosts = data.filter(post => post.userId === userId);
+        displayPage(currentPage, filteredPosts);
+    }).fail(function () {
+        console.log('Erro ao buscar as mensagens.');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const userSelector = document.getElementById('userSelector');
+    const filterButton = document.getElementById('filterByUser');
+
+    filterButton.addEventListener('click', function () {
+        const selectedUserId = userSelector.value;
+        listPostsByUser('https://jsonplaceholder.typicode.com/posts', selectedUserId);
+    });
+});
+
+// Função para exibir uma página de comentários
+function displayPage(currentPage, posts) {
+    const postsPerPage = 10; // Número de posts por página
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    
+    const pagePosts = posts.slice(startIndex, endIndex);
+
+    // Limpar a área onde os comentários serão exibidos
+    const commentList = document.getElementById('commentList');
+    commentList.innerHTML = '';
+
+    // Criar elementos para cada comentário e adicioná-los à lista
+    pagePosts.forEach(post => {
+        const commentItem = document.createElement('li');
+        commentItem.textContent = post.body;
+        commentList.appendChild(commentItem);
+    });
+}
+
+
+
+//questão 8***********************************************************
+
+//  qBut1.addEventListener("click", function () {
+//     flag=1;
+//     showQuest();
+//  });
+//  qBut2.addEventListener("click", function () {
+//     flag=2;
+//     showQuest();
+//  });
+//  qBut3.addEventListener("click", function () {
+//     flag=3;
+//     showQuest();
+//  });
+//  qBut4.addEventListener("click", function () {
+//     flag=4;
+//     showQuest();
+//  });
+//  qBut5.addEventListener("click", function () {
+//     flag=5;
+//     showQuest();
+//  });
+//  qBut6.addEventListener("click", function () {
+//     flag=6;
+//     showQuest();
+//  });
+//  qBut7.addEventListener("click", function () {
+//     flag=7;
+//     showQuest();
+//  });
+//  qBut8.addEventListener("click", function () {
+//     flag=8;
+//     showQuest();
+//  });
+//  qBut9.addEventListener("click", function () {
+//     flag=9;
+//     showQuest();
+//  });
+
+//  let q1b1=document.getElementById("q1b1");
+//  let q1b2=document.getElementById("q1b2");
+//  let wordInput=document.getElementById("wordInput")
+//  q1b1.addEventListener("click", function () {
+ 
+   
+// });
+
+//  function sortArrayStr(arr,typeSort){
+//    if (arr.length>100) return null;
+//    //if (typeSort!=1 || typeSort!=-1) 
+//    if(typeSort==1){
+
+//    }else if(typeSort==-1){
+
+//    }else return null;
+
+//  }
+///codigo p5.js*******************************
+
+function setup() {
+    let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.parent('sketch-container');
+    frameRate(10);
+  }
+  
+  let nx, ny;
+  let raio=25;
+  function draw() {
+        let sz=25;
+        stroke(color(218, 165, 32,60));
+        strokeWeight(.5);
+                //for(let j=0;j<=height/sz;j++)
+                //for(let i=0;i<=width/sz;i++)
+                    //if(i+j%2==0) line(i*sz,j*sz,(i+1)*sz,(j+1)*sz);
+                    //else line(i*sz,(j+1)*sz,(i+1)*sz,j*sz);
+                    noFill();
+    
+                circle(mouseX,mouseY,2*raio);
+            raio=raio+25;
+            if(raio>=500){
+                background(255);
+                raio=25;
+            }
+            
+  }
+</script>
