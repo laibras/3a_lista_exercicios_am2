@@ -137,6 +137,17 @@ searchButton.addEventListener("click", function () {
 
 //questão 6************************************************************************
 
+async function listPosts(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Erro ao buscar os comentários:", error);
+        return null;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   const commentsContainer = document.getElementById("comments");
   const prevPageButton = document.getElementById("prevPage");
@@ -144,18 +155,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let currentPage = 1;
   const itemsPerPage = 10;
-
-  async function listPosts(url) {
-      try {
-          const response = await fetch(url);
-          const data = await response.json();
-          return data;
-      } catch (error) {
-          console.error("Erro ao buscar os comentários:", error);
-          return null;
-      }
-  }
-
 
 let totalComments = 0;
 
@@ -187,7 +186,7 @@ async function getTotalComments() {
           commentDiv.innerHTML = `
               <h4>${comment.title}</h4>
               <p>${comment.body}</p>
-               <p>ID do Usuário: ${comment.userId}</p>
+              <em> <p>ID do Usuário: ${comment.userId}</p></em>
           `;
           commentsContainer.appendChild(commentDiv);
       });
@@ -245,4 +244,72 @@ function listPostsByUser() {
         });
 }
 
-//8
+//questão 8
+
+async function listPosts2(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Erro ao buscar os posts:", error);
+        return [];
+    }
+}
+
+function showPosts(arrPosts) {
+    const postsContainer = document.getElementById("postsContainer");
+
+    for (let i = 0; i < arrPosts.length; i += 2) {
+        const question = arrPosts[i];
+        const answer = arrPosts[i + 1];
+
+        if (question && answer) {
+            postsContainer.innerHTML += `<div class="post quest8"><strong>${question.title}</strong><br><br>${question.body}</div>`;
+            postsContainer.innerHTML += `<div class="post ans8"><strong>${answer.title}</strong><br><br>${answer.body}</div>`;
+        } else {
+            console.error("Posts com IDs " + i + " e " + (i + 1) + " não encontrados.");
+        }
+    }
+}
+
+// Utilize a função listPosts para buscar os posts da URL e, em seguida, chame a função showPosts para criar a listagem.
+listPosts2("https://jsonplaceholder.typicode.com/posts")
+    .then(arrPosts => {
+        showPosts(arrPosts);
+    })
+    .catch(error => {
+        console.error("Erro ao buscar os posts:", error);
+    });
+
+//questão 9
+
+let escrever9=document.getElementById("escrever9");
+let result9=document.getElementById("result9");
+
+escrever9.addEventListener("click",function(){
+let numero=Number(document.getElementById("input9").value);
+result9.textContent = primeiraLetraMaiuscula(numeroPorExtenso(numero));
+});
+
+function primeiraLetraMaiuscula(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function numeroPorExtenso(numero){
+    if(numero<0 || numero>1_000_000) return "Número inválido";
+    let unidade = ["zero","um","dois","três","quatro","cinco","seis","sete","oito","nove"];
+    let especial = ["dez","onze","doze","treze","quatorze","quinze","dezesseis","dezessete","dezoito","dezenove"];
+    let dezena = ["vinte","trinta","quarenta","cinquenta","sessenta","setenta","oitenta","noventa"];
+    let centena = ["cem","cento","duzentos","trezentos","quatrocentos","quinhentos","seiscentos","setecentos","oitocentos","novecentos"];
+    
+
+    if(numero<10) return unidade[numero];
+    else if(numero<20) return especial[numero-10];
+    else if(numero<100) return dezena[Math.floor(numero/10)-2] + " e " + unidade[numero%10];
+    else if(numero<1000) 
+        if(numero%100==0) return centena[Math.floor(numero/100)-1];
+        else return centena[Math.floor(numero/100)] + " e " + numeroPorExtenso(numero%100);
+    else 
+        if(numero%1000==0) return numeroPorExtenso(Math.floor(numero/1000)) + " mil";
+       else return numeroPorExtenso(Math.floor(numero/1000)) + " mil, " +numeroPorExtenso(numero%1000);
+  }
