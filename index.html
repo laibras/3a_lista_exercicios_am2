@@ -7,28 +7,31 @@
   <title>Autoração - Lista3</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
     <header>
         <h1>Autoração Multimídia II - Lista 3</h1>
         <h3>Equipe Fusers Ímpar</h3>
-        <p>José Roberto</p>
-        <p>Rafael Feitosa</p>
-        <p>Matheus Ronald</p>
+        <p>José Roberto Santos - 539023</p>
+        <p>Matheus Ronald Plácido- 536769</p>
+        <p>Rafael de Oliveira Feitosa - 521418</p>
+      
     </header>
     <!-- <hr id="info"> -->
+    <div id="sketch-container"></div>
+
     <section class="questionSelection">
-        <input type="button" id="qBut1" class="questBut" value="questão 1">
-        <input type="button" id="qBut2" class="questBut" value="questão 2">
-        <input type="button" id="qBut3" class="questBut" value="questão 3">
-        <input type="button" id="qBut4" class="questBut" value="questão 4">
-        <input type="button" id="qBut5" class="questBut" value="questão 5">
-        <input type="button" id="qBut6" class="questBut" value="questão 6">
-        <input type="button" id="qBut7" class="questBut" value="questão 7">
-        <input type="button" id="qBut8" class="questBut" value="questão 8">
-        <input type="button" id="qBut9" class="questBut" value="questão 9">
-        <input type="button" id="qBut10" class="questBut" value="questão 10">
+        <input type="button" id="qBut1" class="questBut" value="Questão 1">
+        <input type="button" id="qBut2" class="questBut" value="Questão 2">
+        <input type="button" id="qBut3" class="questBut" value="Questão 3">
+        <input type="button" id="qBut4" class="questBut" value="Questão 4">
+        <input type="button" id="qBut5" class="questBut" value="Questão 5">
+        <input type="button" id="qBut6" class="questBut" value="Questão 6">
+        <input type="button" id="qBut7" class="questBut" value="Questão 7">
+        <input type="button" id="qBut8" class="questBut" value="Questão 8">
+        <input type="button" id="qBut9" class="questBut" value="Questão 9">
+        <input type="button" id="qBut10" class="questBut" value="Questão 10">
 
     </section>
 
@@ -57,7 +60,7 @@
 
     </section>
 
-    <section class="question">
+    <section class="question question2">
         <h3>Questão 2</h3>
         <p>
             Faça uma função chamada searchItems(arr,key,value), que recebe como
@@ -78,8 +81,8 @@
         <section class="ans">
             <label for="keyInput">Chave:</label>
             <input type="text" id="keyInput" placeholder="nome, idade ou data-nascimento">
-            <br>
-            <label for="valueInput">Valor:</label>
+            <p></p>
+            <label for="valueInput"> Valor:</label>
             <input type="text" id="valueInput" placeholder="Valor">
             <br>
             <p></p>
@@ -101,38 +104,56 @@
         </p>
         <hr>
         <section class="ans">
+            <label for="inputArray">Digite um vetor (separe os elementos por vírgula):</label>
+            <input type="text" id="inputArray">
+            <button onclick="filterAndDisplayPrimes()">Filtrar Primos</button>
           
+            <div id="result"></div>
         </section>
     </section>
 
     <section class="question">
         <h3>Questão 4</h3>
         <p>
-            Faça uma função chamada filterPrimes(arr) que receba um vetor com
-            elementos numéricos (a função deve testar essa condição e retornar
-            valor que possa indicar que o vetor fornecido não é composto somente
-            por números) e que retorna um vetor com o conjunto de valores primos
-            encontrados. Caso não seja encontrado nenhum valor primo, a função
-            deve retornar um valor nulo. (1 ponto)            
+            Faça uma função
+            chamada listImages(url) que recebe como parâmetro uma URL para uma
+            função remota presente no endereço
+            https://jsonplaceholder.typicode.com/photos. Ao receber os objetos
+            relacionados à chamada realizada, a função criada deve retornar um
+            vetor com os objetos recebidos. Caso não receba nenhum objeto, a
+            função deve retornar "null". (1 ponto)            
         </p>
         <hr>
         <section class="ans">
-          
+            <div id="image-container4"></div>
         </section>
     </section>
     <section class="question">
         <h3>Questão 5</h3>
         <p>
-            Faça uma função chamada filterPrimes(arr) que receba um vetor com
-            elementos numéricos (a função deve testar essa condição e retornar
-            valor que possa indicar que o vetor fornecido não é composto somente
-            por números) e que retorna um vetor com o conjunto de valores primos
-            encontrados. Caso não seja encontrado nenhum valor primo, a função
-            deve retornar um valor nulo. (1 ponto)            
+            Faça uma aplicação web que utilize a função listImages(url), criada
+            anteriormente, e liste os objetos recebidos na forma de cards
+            (https://www.w3schools.com/howto/howto_css_cards.asp). Os cards
+            devem ser dispostos em duas colunas. Note que os objetos recebidos
+            possuem os campos de endereço para imagens, título das imagens,
+            identificador (id) das imagens e identificador de álbum (albumId).
+            Apresente as imagens (cujas urls são fornecidas nos objetos) no
+            formato de thumbnail. Ao se clicar no thumbnail, a imagem em seu
+            tamanho normal deve ser apresentada na forma de lightbox
+            (https://www.w3schools.com/howto/howto_js_lightbox.asp). Utilize
+            como base para seu código o material disponível em
+            https://www.w3schools.com/howto/default.asp. (1 ponto)
+                      
         </p>
         <hr>
         <section class="ans">
-          
+            <div id="image-container5" class="gallery"></div>
+
+            <div id="lightbox" class="lightbox">
+                <span class="close" onclick="closeLightbox()">&times;</span>
+                <img id="lightbox-image" class="lightbox-content">
+            </div>
+            
         </section>
     </section>
 
@@ -152,17 +173,11 @@
             esses dados de forma compreensível e agradável. (1 ponto)           
         </p>
         <hr>
-        <section class="ans">
-          
+        <section class="ans">     
             <h4>Comentários de Usuários</h4>
-            <ul id="commentList">
-                <!-- Aqui serão exibidos os comentários da página atual -->
-            </ul>
-            <div id="pagination">
-                <button id="prevPage">Anterior</button>
-                <button id="nextPage">Próxima</button>
-            </div>
-
+            <div id="comments"></div>
+            <button id="prevPage">Página Anterior</button>
+            <button id="nextPage">Próxima Página</button>
         </section>
     </section>
 
@@ -184,16 +199,75 @@
         </p>
         <hr>
         <section class="ans">
-            <h4>Filtrar comentários por Usuários</h4>
-            <select id="userSelector">
-                <option value="1">Usuário 1</option>
-                <option value="2">Usuário 2</option>
-                <!-- Adicione mais opções para outros usuários, se necessário -->
-            </select>
-            
-            <button id="filterByUser">Filtrar por Usuário</button>
+            <h4>Listar Mensagens por Usuário</h4>
+            <label for="userId">ID do Usuário:</label>
+            <input type="number" id="userId" placeholder="Digite o ID do usuário">
+            <button onclick="listPostsByUser()">Listar Mensagens</button>
+
+            <ul id="posts"></ul>
         </section>
     </section>
+        <section class="question">
+            <h3> Questão 8</h3>
+            <p>
+                Faça um novo projeto que utilize, novamente, a função listPots(url),
+                descrita anteriormente, e a interface de mensagens já criada por você
+                nas questões anteriores. Crie uma função chamada
+                showPosts(arrPosts), que recebe um vetor de objetos com as
+                informações de mensagens postadas por usuários (acessível pela URL
+                https://jsonplaceholder.typicode.com/posts) e cria de forma dinâmica
+                (através de código Javascript) uma listagem de mensagens onde as que
+                tiverem identificador par serão respostas das mensagens de
+                identificador ímpar, imediatamente precedente. Assim, a mensagem
+                cujo ID é 1 terá como resposta, a mensagem de identificador 2. A
+                mensagem de identificado 3, terá a 4 como resposta e assim por diante,
+                até a última mensagem fornecida. (1 ponto)
+            </p>
+            <hr>
+            <section class="ans">
+                <h4>Listagem de Mensagens como Perguntas e Respostas</h4>
+                <div id="postsContainer" class="post-container"></div>
+            </section>
+        </section>
+
+        <section class="question">
+            <h3> Questão 9</h3>
+            <p>
+                Explicação: um problema interessante para ser resolvido de forma
+                automática é como colocar em palavras o "nome" dos números. Veja,
+                quando vamos falar o nome do número 12, dizemos doze. Já o número 1.001
+                é dito, um mil e um. Faça uma função que possa receber um número
+                inteiro entre 0 e 1.000.000 e retorne como se fala em português este
+                número. (1 ponto)
+            </p>
+            <hr>
+            <section class="ans">
+                <h4>Escritor de números por extenso</h4>
+                <p>Insira um número entre 0 e 1.000.000:</p>
+                <input type="number" id="input9">
+                <button id="escrever9">Escrever</button>
+                <p id="result9"></p>
+            </section>
+        </section>
+
+        <section class="question">
+            <h3> Questão 10</h3>
+            <p>
+                Faça um programa que consiga percorrer o labirinto e encontrar a
+                saída, sabendo que a grade onde ele foi criado é de 11x11.
+                IMPORTANTE: a posição onde fica a entrada seria representada, em
+                termos de vetores, por labirinto[0][1]="E"; e a saída é dada por
+                labirinto[11][10]="S". O vetor tem índice iniciando em zero. E a
+                representação "[n][m]" serve para definir que esse vetor é
+                bidimensional, ou seja, uma matriz nxm posições de memória. (1
+                ponto)
+            </p>
+            <hr>
+            <section class="ans">
+           
+            </section>
+        </section>
+   
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>

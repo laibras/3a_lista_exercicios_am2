@@ -1,4 +1,7 @@
 
+
+  
+//seleção das questões**********************************************************
 let qBut1=document.getElementById("qBut1");
 let qBut2=document.getElementById("qBut2");
 let qBut3=document.getElementById("qBut3");
@@ -131,157 +134,312 @@ searchButton.addEventListener("click", function () {
    }
 });
 
+// questão 3
 
-//questão 6************************************************************************
-function listPosts(url) {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na solicitação de dados.');
+function filterAndDisplayPrimes() {
+    const inputArray = document.getElementById('inputArray').value;
+
+    // Converter a string de entrada em um array de números
+    const arr = inputArray.split(',').map(Number);
+
+    const result = filterPrimes(arr);
+
+    // Exibir o resultado na div 'result'
+    document.getElementById('result').innerText = JSON.stringify(result);
+  }
+
+  function filterPrimes(arr) {
+    // Verificar se todos os elementos são numéricos
+    if (!arr.every(Number.isFinite)) {
+      return 'Erro: o vetor fornecido não é composto somente por números';
+    }
+
+    // Função para verificar se um número é primo
+    function isPrime(num) {
+      for (let i = 2; i < num; i++)
+        if (num % i === 0) return false;
+      return num > 1;
+    }
+
+    // Filtrar o array para conter apenas números primos
+    const primes = arr.filter(isPrime);
+
+    // Se nenhum número primo for encontrado, retornar null
+    if (primes.length === 0) {
+      return null;
+    }
+
+    return primes;
+  }
+
+//questão 4
+function listImages4(page, itemsPerPage) {
+    const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${itemsPerPage}`;
+
+    // Realiza a chamada remota usando Fetch API
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Verifica se há objetos recebidos
+            if (data.length > 0) {
+                // Itera sobre os objetos recebidos
+                data.forEach(obj => {
+                    // Adiciona os elementos diretamente ao contêiner no HTML
+                    document.getElementById('image-container4').innerHTML += `
+                        <div class="image-container4">
+                        <p class="image-albumId">Album ID: ${obj.albumId}</p>
+                        <p class="image-id">ID: ${obj.id}</p>
+                            <p class="image-title">Title: ${obj.title}</p>
+                            <p class="image-url">URL: ${obj.url}</p>
+                            <p class="image-thumbUrl">Thumbnail URL: ${obj.thumbnailUrl}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                // Caso não receba nenhum objeto, exibe uma mensagem
+                document.getElementById('image-container4').innerHTML = '<p>Nenhum objeto encontrado.</p>';
             }
-            return response.json();
         })
         .catch(error => {
-            console.error(error);
-            return null;
+            console.error('Erro ao obter os dados:', error);
         });
 }
-const commentList = document.getElementById('commentList');
-const prevPageButton = document.getElementById('prevPage');
-const nextPageButton = document.getElementById('nextPage');
-document.addEventListener('DOMContentLoaded', function () {
-    // Inicializa a busca dos comentários ao carregar a página
-    fetchComments();
-});
 
-let currentPage = 1; // Página atual
-const itemsPerPage = 10; // Itens por página
-let comments = []; // Armazenar os comentários
+// Define o número da página e o número de itens por página desejados
+const pageNumber = 1;
+const itemsPerPage = 50; // Ajuste conforme necessário
 
-function displayPage(page) {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const commentsToDisplay = comments.slice(startIndex, endIndex);
+// Chama a função e passa os parâmetros adequados
+listImages4(pageNumber, itemsPerPage);
 
-    commentList.innerHTML = ''; // Limpa a lista de comentários
+//questão 5************************************************************************
+  // Função para listar as imagens
+  function listImages(url) {
+    // Limpar o conteúdo atual do contêiner
+    document.getElementById('image-container5').innerHTML = '';
 
-    commentsToDisplay.forEach(comment => {
-        const listItem = document.createElement('li');
-        listItem.textContent = comment.body;
-        commentList.appendChild(listItem);
-    });
+    // Realizar a chamada remota usando Fetch API
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Verificar se há objetos recebidos
+            if (data.length > 0) {
+                // Iterar sobre os objetos recebidos
+                data.forEach(obj => {
+                    // Criar um card para cada objeto
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.innerHTML = `
+                        <img src="${obj.thumbnailUrl}" alt="${obj.title}" class="thumbnail" onclick="openLightbox('${obj.url}', '${obj.title}')">
+                        <h4>${obj.title}</h4>
+                        <p>Album ID: ${obj.albumId}</p>
+                        <p>ID: ${obj.id}</p>
+                        <p>URL: ${obj.url}</p>
+                        
+                    `;
+
+                    // Adicionar o card ao contêiner
+                    document.getElementById('image-container5').appendChild(card);
+                });
+            } else {
+                // Caso não receba nenhum objeto, exibir uma mensagem
+                document.getElementById('image-container5').innerHTML = '<p>Nenhum objeto encontrado.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter os dados:', error);
+        });
 }
 
-function fetchComments() {
-    const url = 'https://jsonplaceholder.typicode.com/comments';
-
-    $.get(url, function (data) {
-        comments = data;
-        displayPage(currentPage);
-    }).fail(function () {
-        console.log('Erro ao buscar os comentários.');
-    });
+// Função para abrir a lightbox
+function openLightbox(imageUrl, title) {
+    document.getElementById('lightbox-image').src = imageUrl;
+    document.getElementById('lightbox-image').alt = title;
+    document.getElementById('lightbox').style.display = 'flex';
 }
 
-prevPageButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        displayPage(currentPage);
+// Função para fechar a lightbox
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+// Chamar a função listImages com a URL desejada
+listImages('https://jsonplaceholder.typicode.com/photos');
+//questão 6************************************************************************
+
+async function listPosts(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Erro ao buscar os comentários:", error);
+        return null;
     }
-});
-
-nextPageButton.addEventListener('click', () => {
-    const totalPages = Math.ceil(comments.length / itemsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        displayPage(currentPage);
-    }
-});
-
-
-
-//questão 7 *************************************************************************
-
-function listPostsByUser(url, userId) {
-    $.get(url, function (data) {
-        const filteredPosts = data.filter(post => post.userId === userId);
-        displayPage(currentPage, filteredPosts);
-    }).fail(function () {
-        console.log('Erro ao buscar as mensagens.');
-    });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const userSelector = document.getElementById('userSelector');
-    const filterButton = document.getElementById('filterByUser');
+document.addEventListener("DOMContentLoaded", function() {
+  const commentsContainer = document.getElementById("comments");
+  const prevPageButton = document.getElementById("prevPage");
+  const nextPageButton = document.getElementById("nextPage");
 
-    filterButton.addEventListener('click', function () {
-        const selectedUserId = userSelector.value;
-        listPostsByUser('https://jsonplaceholder.typicode.com/posts', selectedUserId);
-    });
+  let currentPage = 1;
+  const itemsPerPage = 10;
+
+let totalComments = 0;
+
+async function getTotalComments() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data = await response.json();
+        totalComments = data.length;
+    } catch (error) {
+        console.error("Erro ao buscar o total de comentários:", error);
+        totalComments = 0;
+    }
+}
+
+  async function displayComments(page) {
+      const url = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${itemsPerPage}`;
+      const comments = await listPosts(url);
+
+      if (comments === null) {
+          commentsContainer.innerHTML = "Não foi possível buscar os comentários.";
+          return;
+      }
+
+      commentsContainer.innerHTML = "";
+
+      comments.forEach(comment => {
+          const commentDiv = document.createElement("div");
+          commentDiv.classList.add("comment");
+          commentDiv.innerHTML = `
+              <h4>${comment.title}</h4>
+              <p>${comment.body}</p>
+              <em> <p>ID do Usuário: ${comment.userId}</p></em>
+          `;
+          commentsContainer.appendChild(commentDiv);
+      });
+
+    if (currentPage >= Math.ceil(totalComments / itemsPerPage)) {
+        nextPageButton.disabled = true; // Desabilita o botão de próxima página
+    } else {
+        nextPageButton.disabled = false; // Habilita o botão de próxima página
+    }
+    
+  }
+getTotalComments().then(() => {
+    displayComments(currentPage);
+});
+
+  prevPageButton.addEventListener("click", () => {
+      if (currentPage > 1) {
+          currentPage--;
+          displayComments(currentPage);
+      }
+  });
+
+  nextPageButton.addEventListener("click", () => {
+      currentPage++;
+      displayComments(currentPage);
+  });
+
+  displayComments(currentPage);
 });
 
 
 
 
+//questão 7
+function listPostsByUser() {
+    const userId = document.getElementById("userId").value;
+    const url = `https://jsonplaceholder.typicode.com/posts?userId=${userId}`;
+    
+    // Limpar a lista de posts
+    document.getElementById("posts").innerHTML = "";
 
+    fetch(url)
+        .then(response => response.json())
+        .then(posts => {
+            posts.forEach(post => {
+                // Criar um elemento de comentário para cada post
+                const comment = document.createElement("div");
+                comment.className = "comment";
+                comment.innerHTML = `<h4>${post.title}</h4><p>${post.body}</p>`;
+                document.getElementById("posts").appendChild(comment);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao buscar os posts:", error);
+        });
+}
 
+//questão 8
 
+async function listPosts2(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Erro ao buscar os posts:", error);
+        return [];
+    }
+}
 
+function showPosts(arrPosts) {
+    const postsContainer = document.getElementById("postsContainer");
 
+    for (let i = 0; i < arrPosts.length; i += 2) {
+        const question = arrPosts[i];
+        const answer = arrPosts[i + 1];
 
-//  qBut1.addEventListener("click", function () {
-//     flag=1;
-//     showQuest();
-//  });
-//  qBut2.addEventListener("click", function () {
-//     flag=2;
-//     showQuest();
-//  });
-//  qBut3.addEventListener("click", function () {
-//     flag=3;
-//     showQuest();
-//  });
-//  qBut4.addEventListener("click", function () {
-//     flag=4;
-//     showQuest();
-//  });
-//  qBut5.addEventListener("click", function () {
-//     flag=5;
-//     showQuest();
-//  });
-//  qBut6.addEventListener("click", function () {
-//     flag=6;
-//     showQuest();
-//  });
-//  qBut7.addEventListener("click", function () {
-//     flag=7;
-//     showQuest();
-//  });
-//  qBut8.addEventListener("click", function () {
-//     flag=8;
-//     showQuest();
-//  });
-//  qBut9.addEventListener("click", function () {
-//     flag=9;
-//     showQuest();
-//  });
+        if (question && answer) {
+            postsContainer.innerHTML += `<div class="post quest8"><strong>${question.title}</strong><br><br>${question.body}</div>`;
+            postsContainer.innerHTML += `<div class="post ans8"><strong>${answer.title}</strong><br><br>${answer.body}</div>`;
+        } else {
+            console.error("Posts com IDs " + i + " e " + (i + 1) + " não encontrados.");
+        }
+    }
+}
 
-//  let q1b1=document.getElementById("q1b1");
-//  let q1b2=document.getElementById("q1b2");
-//  let wordInput=document.getElementById("wordInput")
-//  q1b1.addEventListener("click", function () {
- 
-   
-// });
+// Utilize a função listPosts para buscar os posts da URL e, em seguida, chame a função showPosts para criar a listagem.
+listPosts2("https://jsonplaceholder.typicode.com/posts")
+    .then(arrPosts => {
+        showPosts(arrPosts);
+    })
+    .catch(error => {
+        console.error("Erro ao buscar os posts:", error);
+    });
 
-//  function sortArrayStr(arr,typeSort){
-//    if (arr.length>100) return null;
-//    //if (typeSort!=1 || typeSort!=-1) 
-//    if(typeSort==1){
+//questão 9
 
-//    }else if(typeSort==-1){
+let escrever9=document.getElementById("escrever9");
+let result9=document.getElementById("result9");
 
-//    }else return null;
+escrever9.addEventListener("click",function(){
+let numero=Number(document.getElementById("input9").value);
+result9.textContent = primeiraLetraMaiuscula(numeroPorExtenso(numero));
+});
 
-//  }
+function primeiraLetraMaiuscula(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function numeroPorExtenso(numero){
+    if(numero<0 || numero>1_000_000) return "Número inválido";
+    let unidade = ["zero","um","dois","três","quatro","cinco","seis","sete","oito","nove"];
+    let especial = ["dez","onze","doze","treze","quatorze","quinze","dezesseis","dezessete","dezoito","dezenove"];
+    let dezena = ["vinte","trinta","quarenta","cinquenta","sessenta","setenta","oitenta","noventa"];
+    let centena = ["cem","cento","duzentos","trezentos","quatrocentos","quinhentos","seiscentos","setecentos","oitocentos","novecentos"];
+    
+
+    if(numero<10) return unidade[numero];
+    else if(numero<20) return especial[numero-10];
+    else if(numero<100) return dezena[Math.floor(numero/10)-2] + " e " + unidade[numero%10];
+    else if(numero<1000) 
+        if(numero%100==0) return centena[Math.floor(numero/100)-1];
+        else return centena[Math.floor(numero/100)] + " e " + numeroPorExtenso(numero%100);
+    else 
+        if(numero%1000==0) return numeroPorExtenso(Math.floor(numero/1000)) + " mil";
+       else return numeroPorExtenso(Math.floor(numero/1000)) + " mil, " +numeroPorExtenso(numero%1000);
+  }
