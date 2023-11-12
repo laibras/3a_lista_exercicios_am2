@@ -134,7 +134,137 @@ searchButton.addEventListener("click", function () {
    }
 });
 
+// questão 3
 
+function filterAndDisplayPrimes() {
+    const inputArray = document.getElementById('inputArray').value;
+
+    // Converter a string de entrada em um array de números
+    const arr = inputArray.split(',').map(Number);
+
+    const result = filterPrimes(arr);
+
+    // Exibir o resultado na div 'result'
+    document.getElementById('result').innerText = JSON.stringify(result);
+  }
+
+  function filterPrimes(arr) {
+    // Verificar se todos os elementos são numéricos
+    if (!arr.every(Number.isFinite)) {
+      return 'Erro: o vetor fornecido não é composto somente por números';
+    }
+
+    // Função para verificar se um número é primo
+    function isPrime(num) {
+      for (let i = 2; i < num; i++)
+        if (num % i === 0) return false;
+      return num > 1;
+    }
+
+    // Filtrar o array para conter apenas números primos
+    const primes = arr.filter(isPrime);
+
+    // Se nenhum número primo for encontrado, retornar null
+    if (primes.length === 0) {
+      return null;
+    }
+
+    return primes;
+  }
+
+//questão 4
+function listImages4(page, itemsPerPage) {
+    const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${itemsPerPage}`;
+
+    // Realiza a chamada remota usando Fetch API
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Verifica se há objetos recebidos
+            if (data.length > 0) {
+                // Itera sobre os objetos recebidos
+                data.forEach(obj => {
+                    // Adiciona os elementos diretamente ao contêiner no HTML
+                    document.getElementById('image-container4').innerHTML += `
+                        <div class="image-container4">
+                        <p class="image-albumId">Album ID: ${obj.albumId}</p>
+                        <p class="image-id">ID: ${obj.id}</p>
+                            <p class="image-title">Title: ${obj.title}</p>
+                            <p class="image-url">URL: ${obj.url}</p>
+                            <p class="image-thumbUrl">Thumbnail URL: ${obj.thumbnailUrl}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                // Caso não receba nenhum objeto, exibe uma mensagem
+                document.getElementById('image-container4').innerHTML = '<p>Nenhum objeto encontrado.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter os dados:', error);
+        });
+}
+
+// Define o número da página e o número de itens por página desejados
+const pageNumber = 1;
+const itemsPerPage = 50; // Ajuste conforme necessário
+
+// Chama a função e passa os parâmetros adequados
+listImages4(pageNumber, itemsPerPage);
+
+//questão 5************************************************************************
+  // Função para listar as imagens
+  function listImages(url) {
+    // Limpar o conteúdo atual do contêiner
+    document.getElementById('image-container5').innerHTML = '';
+
+    // Realizar a chamada remota usando Fetch API
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Verificar se há objetos recebidos
+            if (data.length > 0) {
+                // Iterar sobre os objetos recebidos
+                data.forEach(obj => {
+                    // Criar um card para cada objeto
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.innerHTML = `
+                        <img src="${obj.thumbnailUrl}" alt="${obj.title}" class="thumbnail" onclick="openLightbox('${obj.url}', '${obj.title}')">
+                        <h4>${obj.title}</h4>
+                        <p>Album ID: ${obj.albumId}</p>
+                        <p>ID: ${obj.id}</p>
+                        <p>URL: ${obj.url}</p>
+                        
+                    `;
+
+                    // Adicionar o card ao contêiner
+                    document.getElementById('image-container5').appendChild(card);
+                });
+            } else {
+                // Caso não receba nenhum objeto, exibir uma mensagem
+                document.getElementById('image-container5').innerHTML = '<p>Nenhum objeto encontrado.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter os dados:', error);
+        });
+}
+
+// Função para abrir a lightbox
+function openLightbox(imageUrl, title) {
+    document.getElementById('lightbox-image').src = imageUrl;
+    document.getElementById('lightbox-image').alt = title;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+// Função para fechar a lightbox
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+// Chamar a função listImages com a URL desejada
+listImages('https://jsonplaceholder.typicode.com/photos');
 //questão 6************************************************************************
 
 async function listPosts(url) {

@@ -13,9 +13,10 @@
     <header>
         <h1>Autoração Multimídia II - Lista 3</h1>
         <h3>Equipe Fusers Ímpar</h3>
-        <p>José Roberto</p>
-        <p>Rafael Feitosa</p>
-        <p>Matheus Ronald</p>
+        <p>José Roberto Santos - 539023</p>
+        <p>Matheus Ronald Plácido- 536769</p>
+        <p>Rafael de Oliveira Feitosa - 521418</p>
+      
     </header>
     <!-- <hr id="info"> -->
     <div id="sketch-container"></div>
@@ -59,7 +60,7 @@
 
     </section>
 
-    <section class="question">
+    <section class="question question2">
         <h3>Questão 2</h3>
         <p>
             Faça uma função chamada searchItems(arr,key,value), que recebe como
@@ -80,8 +81,8 @@
         <section class="ans">
             <label for="keyInput">Chave:</label>
             <input type="text" id="keyInput" placeholder="nome, idade ou data-nascimento">
-            <br>
-            <label for="valueInput">Valor:</label>
+            <p></p>
+            <label for="valueInput"> Valor:</label>
             <input type="text" id="valueInput" placeholder="Valor">
             <br>
             <p></p>
@@ -103,7 +104,11 @@
         </p>
         <hr>
         <section class="ans">
+            <label for="inputArray">Digite um vetor (separe os elementos por vírgula):</label>
+            <input type="text" id="inputArray">
+            <button onclick="filterAndDisplayPrimes()">Filtrar Primos</button>
           
+            <div id="result"></div>
         </section>
     </section>
 
@@ -120,7 +125,7 @@
         </p>
         <hr>
         <section class="ans">
-          
+            <div id="image-container4"></div>
         </section>
     </section>
     <section class="question">
@@ -142,7 +147,13 @@
         </p>
         <hr>
         <section class="ans">
-          
+            <div id="image-container5" class="gallery"></div>
+
+            <div id="lightbox" class="lightbox">
+                <span class="close" onclick="closeLightbox()">&times;</span>
+                <img id="lightbox-image" class="lightbox-content">
+            </div>
+            
         </section>
     </section>
 
@@ -162,13 +173,11 @@
             esses dados de forma compreensível e agradável. (1 ponto)           
         </p>
         <hr>
-        <section class="ans">
-          
+        <section class="ans">     
             <h4>Comentários de Usuários</h4>
             <div id="comments"></div>
             <button id="prevPage">Página Anterior</button>
             <button id="nextPage">Próxima Página</button>
-
         </section>
     </section>
 
