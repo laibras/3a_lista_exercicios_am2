@@ -173,6 +173,21 @@ function filterAndDisplayPrimes() {
   }
 
 //questão 4
+const pageNumber = 1;
+let itemsPerPage = 50; // Ajuste conforme necessário
+
+function carregarImagens() {
+    const userInput = document.getElementById("numeroImg").value;
+    const numberOfImages = userInput ? Number(userInput) : itemsPerPage;
+
+    clearImageContainer();
+    // Chama a função com os parâmetros adequados
+    listImages4(pageNumber, numberOfImages);
+}
+function clearImageContainer() {
+    const imageContainer = document.getElementById('image-container4');
+    imageContainer.innerHTML = '';
+}
 function listImages4(page, itemsPerPage) {
     const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${itemsPerPage}`;
 
@@ -206,8 +221,7 @@ function listImages4(page, itemsPerPage) {
 }
 
 // Define o número da página e o número de itens por página desejados
-const pageNumber = 1;
-const itemsPerPage = 50; // Ajuste conforme necessário
+
 
 // Chama a função e passa os parâmetros adequados
 listImages4(pageNumber, itemsPerPage);
@@ -443,3 +457,122 @@ function numeroPorExtenso(numero){
         if(numero%1000==0) return numeroPorExtenso(Math.floor(numero/1000)) + " mil";
        else return numeroPorExtenso(Math.floor(numero/1000)) + " mil, " +numeroPorExtenso(numero%1000);
   }
+
+  //questão 10*****************************************************************************************
+  var labirinto; // Declare a matriz como uma variável global para acessá-la nas funções
+
+// Função para gerar um novo labirinto
+function gerarLabirinto() {
+    // Limpa o conteúdo anterior do labirinto
+    document.getElementById('labirinto').innerHTML = '';
+
+    // Matriz que representa o labirinto
+    labirinto = [];
+
+    // Popula a matriz com quadrados brancos ('C')
+ 
+  for (var i = 0; i < 11; i++) {
+      var linha = [];
+      for (var j = 0; j < 11; j++) {
+          if (i === 0 || i === 10 || j === 0 || j === 10) {
+              linha.push('P'); // Paredes nas margens
+          } else {
+              // Paredes aleatórias (80% de chance de serem paredes)
+              linha.push(Math.random() < 0.3 ? 'P' : 'C'); // 'C' representa um caminho
+          }
+      }
+      labirinto.push(linha);
+  }
+    // Define a entrada e a saída
+    labirinto[1][0] = 'E';
+    labirinto[9][10] = 'S';
+  labirinto[1][1] = 'C';
+  labirinto[9][9] = 'C';
+
+    // Exibe visualmente o labirinto na página HTML
+    var labirintoElement = document.getElementById('labirinto');
+
+  for (var i = 0; i < 11; i++) {
+      for (var j = 0; j < 11; j++) {
+          var cell = document.createElement('div');
+          cell.className = 'cell';
+          if (labirinto[i][j] === 'E') {
+              cell.classList.add('entrance');
+          } else if (labirinto[i][j] === 'S') {
+              cell.classList.add('exit');
+          } else if (labirinto[i][j] === 'P') {
+              cell.style.backgroundColor = '#000'; // Cor para paredes
+          }
+          labirintoElement.appendChild(cell);
+      }
+  }
+}
+
+// Função para verificar se há um caminho entre a entrada e a saída
+function verificarCaminho() {
+    var posicaoEntrada = { linha: 1, coluna: 0 };
+    var posicaoSaida = { linha: 9, coluna: 10 };
+
+    // Função para verificar se uma posição é válida (caminho 'C')
+    function posicaoValida(linha, coluna) {
+        return (
+            linha >= 0 &&
+            linha < 11 &&
+            coluna >= 0 &&
+            coluna < 11 &&
+            labirinto[linha][coluna] === 'C'
+        );
+    }
+
+    // Função de busca em largura
+   function buscaEmLargura() {
+           var visitado = [];
+           for (var i = 0; i < 11; i++) {
+               var linha = [];
+               for (var j = 0; j < 11; j++) {
+                   linha.push(false);
+               }
+               visitado.push(linha);
+           }
+
+           var fila = [];
+           fila.push(posicaoEntrada);
+           visitado[posicaoEntrada.linha][posicaoEntrada.coluna] = true;
+
+           while (fila.length > 0) {
+               var posicaoAtual = fila.shift();
+
+               // Verifica se chegou à saída
+               if (posicaoAtual.linha === posicaoSaida.linha && posicaoAtual.coluna === posicaoSaida.coluna) {
+                  console.log('Saída encontrada!');
+                   alert('Existe um caminho entre a entrada e a saída.');
+                   return;
+               }
+             console.log('Posição Atual:', posicaoAtual);
+             
+               // Adiciona vizinhos não visitados à fila
+               var vizinhos = [
+                   { linha: posicaoAtual.linha, coluna: posicaoAtual.coluna + 1 },
+                   { linha: posicaoAtual.linha + 1, coluna: posicaoAtual.coluna },
+                   { linha: posicaoAtual.linha, coluna: posicaoAtual.coluna - 1 },
+                   { linha: posicaoAtual.linha - 1, coluna: posicaoAtual.coluna }
+               ];
+
+               for (var i = 0; i < vizinhos.length; i++) {
+                   var vizinho = vizinhos[i];
+                   if (posicaoValida(vizinho.linha, vizinho.coluna) && !visitado[vizinho.linha][vizinho.coluna]) {
+                       fila.push(vizinho);
+                       visitado[vizinho.linha][vizinho.coluna] = true;
+                   }
+               }
+           }
+
+           // Se a fila estiver vazia e não encontrou a saída, não há caminho
+     console.log('Não existe um caminho entre a entrada e a saída.');
+           alert('Não existe um caminho entre a entrada e a saída.');
+       }
+  console.log('Entrada:', posicaoEntrada);
+  console.log('Saída:', posicaoSaida);
+       // Inicia a busca em largura
+       buscaEmLargura();
+   }

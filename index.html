@@ -107,7 +107,7 @@
             <label for="inputArray">Digite um vetor (separe os elementos por vírgula):</label>
             <input type="text" id="inputArray">
             <button onclick="filterAndDisplayPrimes()">Filtrar Primos</button>
-          
+          <p></p>
             <div id="result"></div>
         </section>
     </section>
@@ -125,6 +125,10 @@
         </p>
         <hr>
         <section class="ans">
+            <label for="numeroImg">Digite quantas imagens quer carregar:</label>
+            <input type="text" id="numeroImg">
+            <button onclick="carregarImagens()">Carregar</button>
+            <p></p>
             <div id="image-container4"></div>
         </section>
     </section>
@@ -264,7 +268,10 @@
             </p>
             <hr>
             <section class="ans">
-           
+                <button onclick="gerarLabirinto()">Gerar Labirinto</button>
+                <button onclick="verificarCaminho()">Verificar Caminho</button>
+                <p></p>
+                <div id="labirinto" class="maze"></div>
             </section>
         </section>
    
